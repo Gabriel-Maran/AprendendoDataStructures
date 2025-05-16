@@ -18,7 +18,6 @@ public class DynamicArray {
 
     public void add(Object element) {
         verifGrown();
-        verifShrink();
         array[size] = element;
         size++;
     }
@@ -28,7 +27,6 @@ public class DynamicArray {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         verifGrown();
-        verifShrink();
         for (int i = size; i >= index; i--) {
             array[i + 1] = array[i];
         }
@@ -45,7 +43,6 @@ public class DynamicArray {
             array[i] = array[i + 1];
         }
         size--;
-        verifShrink();
     }
 
     public void delete(Object element) {
@@ -67,16 +64,9 @@ public class DynamicArray {
     }
 
     private void verifGrown() {
-        while(this.capacity/2 >= this.size){
+        if(this.capacity <= this.size){
             array = Arrays.copyOf(array, capacity * 2);
             capacity *= 2;
-        }
-    }
-
-    private void verifShrink() {
-        while(this.capacity/2 >= this.size){
-            array = Arrays.copyOf(array, capacity / 2);
-            capacity /= 2;
         }
     }
 
