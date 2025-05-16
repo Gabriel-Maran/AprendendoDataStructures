@@ -1,4 +1,4 @@
-package AprendendoQueue;
+package AprendendoQueue.teste;
 
 import java.util.LinkedList;
 import java.util.Queue;

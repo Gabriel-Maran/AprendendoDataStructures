@@ -1,7 +1,4 @@
-package AprendendoLinkedList;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+package AprendendoLinkedList.teste;
 
 import java.util.LinkedList;
 

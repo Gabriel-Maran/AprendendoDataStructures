@@ -1,7 +1,6 @@
-package AprendendoDynamicArrays;
+package AprendendoDynamicArrays.dominio;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class DynamicArray {
     int size;
@@ -18,9 +17,8 @@ public class DynamicArray {
     }
 
     public void add(Object element) {
-        if (this.capacity <= this.size) {
-            grown();
-        }
+        verifGrown();
+        verifShrink();
         array[size] = element;
         size++;
     }
@@ -29,13 +27,13 @@ public class DynamicArray {
         if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        if (this.capacity <= this.size) {
-            grown();
-        }
-        for (int i = size; i > index; i--) {
-            array[i] = array[i + 1];
+        verifGrown();
+        verifShrink();
+        for (int i = size; i >= index; i--) {
+            array[i + 1] = array[i];
         }
         array[index] = element;
+        size++;
     }
 
     public void remove(int index) {
@@ -43,11 +41,11 @@ public class DynamicArray {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         Object current = array[size];
-        for (int i = size; i > index; i--) {
-            Object previous = array[i - 1];
-            array[i - 1] = current;
-            current = previous;
+        for (int i = index; i < size; i++) {
+            array[i] = array[i + 1];
         }
+        size--;
+        verifShrink();
     }
 
     public void delete(Object element) {
@@ -68,12 +66,18 @@ public class DynamicArray {
         return -1;
     }
 
-    private void grown() {
-        array = Arrays.copyOf(array, capacity * 2);
+    private void verifGrown() {
+        while(this.capacity/2 >= this.size){
+            array = Arrays.copyOf(array, capacity * 2);
+            capacity *= 2;
+        }
     }
 
-    private void shrink() {
-
+    private void verifShrink() {
+        while(this.capacity/2 >= this.size){
+            array = Arrays.copyOf(array, capacity / 2);
+            capacity /= 2;
+        }
     }
 
     public boolean isEmpty() {
@@ -83,8 +87,8 @@ public class DynamicArray {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < size - 1; i++) {
-            if (i + 2 == size) {
+        for (int i = 0; i < size; i++) {
+            if (i + 1 == size) {
                 str.append(array[i]);
                 break;
             }
@@ -92,4 +96,14 @@ public class DynamicArray {
         }
         return "[" + str.toString() + "]";
     }
+
+    public int getSize() {
+        return size;
+    }
+
+
+    public int getCapacity() {
+        return capacity;
+    }
+
 }
