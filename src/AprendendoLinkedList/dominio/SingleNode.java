@@ -2,11 +2,11 @@ package AprendendoLinkedList.dominio;
 
 import java.util.Optional;
 
-public class SingleNode {
-    Object data;
-    SingleNode next;
+public class SingleNode<T> {
+    T data;
+    SingleNode<T> next;
 
-    public SingleNode(Object data, SingleNode next) {
+    public SingleNode(T data, SingleNode<T> next) {
         this.data = data;
         this.next = next;
     }
@@ -19,19 +19,7 @@ public class SingleNode {
                 '}';
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public SingleNode getNext() {
-        return next;
-    }
-
-    public void setNext(SingleNode next) {
-        this.next = next;
     }
 }

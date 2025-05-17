@@ -1,22 +1,22 @@
 package AprendendoLinkedList.dominio;
 
-public class SingleLinkedList {
-    SingleNode head;
-    SingleNode tail;
+public class SingleLinkedList<T> {
+    SingleNode<T> head;
+    SingleNode<T> tail;
     int size;
 
     public SingleLinkedList() {
-        SingleNode head = null;
-        SingleNode tail = null;
-        size = 0;
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
-    public void addAt(int index, Object object) {
+    public void addAt(int index, T object) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        SingleNode auxNode = head;
-        SingleNode newSingleNode = new SingleNode(object, null);
+        SingleNode<T> auxNode = head;
+        SingleNode<T> newSingleNode = new SingleNode<T>(object, null);
         if (index == 0) {
             addFirst(object);
             return;
@@ -27,21 +27,22 @@ public class SingleLinkedList {
         for (int i = 0; i < index - 1; i++) {
             auxNode = auxNode.next;
         }
-        SingleNode nextNode = auxNode.next;
+        SingleNode<T> nextNode = auxNode.next;
         auxNode.next = newSingleNode;
         newSingleNode.next = nextNode;
-    }
-
-    public void addFirst(Object object) {
-        SingleNode newSingleNode = new SingleNode(object, null);
-        SingleNode temp = head;
-        head = newSingleNode;
-        newSingleNode.next = temp;
         size++;
     }
 
-    public void addLast(Object object) {
-        SingleNode newSingleNode = new SingleNode(object, null);
+    public void addFirst(T object) {
+        head = new SingleNode<T>(object, head);
+        if (tail == null) {
+            tail = head;
+        }
+        size++;
+    }
+
+    public void addLast(T object) {
+        SingleNode<T> newSingleNode = new SingleNode<T>(object, null);
         if (head == null) {
             head = newSingleNode;
             tail = head;
@@ -50,21 +51,22 @@ public class SingleLinkedList {
         }
         tail.next = newSingleNode;
         tail = newSingleNode;
-        System.out.println(newSingleNode);
         size++;
     }
 
     public void removeAt(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         if (index == 0) {
             removeFirst();
+            return;
         }
         if (index == size - 1) {
             removeLast();
+            return;
         }
-        SingleNode auxNode = head;
+        SingleNode<T> auxNode = head;
         for (int i = 0; i < index - 1; i++) {
             auxNode = auxNode.next;
         }
@@ -73,7 +75,11 @@ public class SingleLinkedList {
     }
 
     public void removeFirst() {
-        if (head == null) {
+        if (head == null) return;
+        if (head == tail) {
+            head = null;
+            tail = null;
+            size--;
             return;
         }
         head = head.next;
@@ -81,11 +87,15 @@ public class SingleLinkedList {
     }
 
     public void removeLast() {
-        if (head == null) {
+        if (head == null) return;
+        if (head == tail) {
+            head = null;
+            tail = null;
+            size--;
             return;
         }
-        SingleNode temp = head;
-        for (int i = 0; i < size - 1; i++) {
+        SingleNode<T> temp = head;
+        for (int i = 0; i < size - 2; i++) {
             temp = temp.next;
         }
         temp.next = null;
@@ -93,44 +103,44 @@ public class SingleLinkedList {
         size--;
     }
 
-    public Object getFirst() {
-        return head;
-    }
-
-    public Object getLast() {
-        return tail;
-    }
-
     @Override
     public String toString() {
-        return "SingleLinkedList{" +
-                "head=" + head +
-                ", tail=" + tail +
-                '}';
+        StringBuilder estruturaLista = new StringBuilder();
+        estruturaLista.append("[");
+        SingleNode<T> auxNode = head;
+        for (int i = 0; i < size; i++) {
+            estruturaLista.append(auxNode.data);
+            if(i != size - 1) {
+                estruturaLista.append(" -> ");
+            }
+            auxNode = auxNode.next;
+        }
+        estruturaLista.append("]");
+        return estruturaLista.toString();
     }
 
-    public Object getValue(int index) {
-        if (index < 0 || index > size) {
+    public T getValue(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        if(index == 0) {
+        if (index == 0) {
             return getHeadValue();
         }
-        if(index == size - 1) {
+        if (index == size - 1) {
             return getTailValue();
         }
-        SingleNode auxNode = head;
-        for(int i = 0; i < index; i++){
+        SingleNode<T> auxNode = head;
+        for (int i = 0; i < index; i++) {
             auxNode = auxNode.next;
         }
         return auxNode.data;
     }
 
-    public Object getHeadValue() {
+    public T getHeadValue() {
         return head.getData();
     }
 
-    public Object getTailValue() {
+    public T getTailValue() {
         return tail.getData();
     }
 
