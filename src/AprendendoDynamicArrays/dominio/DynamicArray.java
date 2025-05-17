@@ -35,9 +35,6 @@ public class DynamicArray {
     }
 
     public void remove(int index) {
-        if (index < 0 || index >= this.size) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
-        }
         Object current = array[size];
         for (int i = index; i < size; i++) {
             array[i] = array[i + 1];

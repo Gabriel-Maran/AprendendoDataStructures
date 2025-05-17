@@ -11,8 +11,8 @@ public class DynamicArrayTeste01 {
         array.add("String");
         array.add(1);
         System.out.println(array.getCapacity());
-//        array.delete(1);
-        array.insert(1, "Talvez");
+        array.delete(1);
+        array.remove(1);
         System.out.println(array);
         System.out.println("Empty: " + array.isEmpty());
     }
