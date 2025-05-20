@@ -1,7 +1,9 @@
-package AprendendoInterpolationSearch.teste;
+package AprendendoSearch.teste;
 
 public class InterpolationSearchTeste01 {
     public static void main(String[] args) {
+        //Caso nomral: O(log(log n))
+        //Pior caso: O(n)
         int[] array = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
         int index = 256;
         int search = interpolationSearch(array, index);

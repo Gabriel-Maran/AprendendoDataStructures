@@ -1,4 +1,4 @@
-package AprendendoBinarySearch;
+package AprendendoSearch.teste;
 
 public class BinarySearchTeste01 {
     public static void main(String[] args) {

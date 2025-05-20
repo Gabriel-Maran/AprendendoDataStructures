@@ -1,4 +1,4 @@
-package AprendendoLinearSearch.teste;
+package AprendendoSearch.teste;
 
 public class LinnearSearchTeste01 {//O(n), ou seja, linear
     public static void main(String[] args) {
