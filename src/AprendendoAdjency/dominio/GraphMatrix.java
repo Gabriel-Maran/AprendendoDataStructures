@@ -1,13 +1,12 @@
-package AprendendoAdjencyMatrix.dominio;
+package AprendendoAdjency.dominio;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
-public class Graph {
+public class GraphMatrix {
     ArrayList<Node> nodes;
     int[][] matrix;
 
-    public Graph(int size) {
+    public GraphMatrix(int size) {
         nodes = new ArrayList<>();
         matrix = new int[size][size];
     }

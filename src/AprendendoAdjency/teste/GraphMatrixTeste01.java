@@ -1,13 +1,13 @@
-package AprendendoAdjencyMatrix.teste;
+package AprendendoAdjency.teste;
 
-import AprendendoAdjencyMatrix.dominio.Graph;
-import AprendendoAdjencyMatrix.dominio.Node;
+import AprendendoAdjency.dominio.GraphMatrix;
+import AprendendoAdjency.dominio.Node;
 
-public class GraphTeste01 {
+public class GraphMatrixTeste01 {
     //To check an edge, the complexity is O(1) in runtime
     //The space complexity is O(v²), because its an two-dimensional array
     public static void main(String[] args) {
-        Graph graph = new Graph(5);
+        GraphMatrix graph = new GraphMatrix(5);
         graph.addNode(new Node('A'));
         graph.addNode(new Node('B'));
         graph.addNode(new Node('C'));

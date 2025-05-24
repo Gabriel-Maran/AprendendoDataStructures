@@ -1,4 +1,4 @@
-package AprendendoAdjencyMatrix.dominio;
+package AprendendoAdjency.dominio;
 
 public class Node {
     char data;
