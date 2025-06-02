@@ -16,11 +16,16 @@ public class BinarySearchTreeTeste01 {
         tree.insert(new Node(4));
         tree.insert(new Node(8));
 
-        tree.remove(8  );
-        tree.display();
-        System.out.println(tree.search(0));
-        System.out.println(tree.search(9));
-
-        tree.remove(10);
+//        tree.remove(8  );
+//        tree.display();
+//        System.out.println(tree.search(0));
+//        System.out.println(tree.search(9));
+//
+//        tree.remove(10);
+        tree.inOrderPrint();
+        System.out.println("---------------------");
+        tree.postOrderPrint();
+        System.out.println("---------------------");
+        tree.preOrderPrint();
     }
 }

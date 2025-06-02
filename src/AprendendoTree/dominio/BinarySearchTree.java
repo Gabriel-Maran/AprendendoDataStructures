@@ -97,4 +97,44 @@ public class BinarySearchTree {
         }
         return root.data;
     }
+
+    public void inOrderPrint(){
+        inOrderHelper(root);
+    }
+
+    private void inOrderHelper(Node node){
+        if(node == null){
+            return;
+        }
+        inOrderHelper(node.left);
+        System.out.println(node.data);
+        inOrderHelper(node.right);
+    }
+
+    public void postOrderPrint(){
+        postOrderHelper(root);
+    }
+
+    private void postOrderHelper(Node node){
+        if(node == null){
+            return;
+        }
+        postOrderHelper(node.left);
+        postOrderHelper(node.right);
+        System.out.println(node.data);
+    }
+
+    public void preOrderPrint(){
+        preOrderHelper(root);
+    }
+
+    private void preOrderHelper(Node node){
+        if(node == null){
+            return;
+        }
+        System.out.println(node.data);
+        preOrderHelper(node.left);
+        preOrderHelper(node.right);
+    }
+
 }
